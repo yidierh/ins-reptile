@@ -5,7 +5,7 @@
         <el-input v-model="form.url" placeholder="请输入要抓取的图片地址" clearable=""></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary">抓取</el-button>
+        <el-button type="primary" @click="getPhoto">抓取</el-button>
       </el-form-item>
     </el-form>
   </section>
@@ -16,7 +16,14 @@
     name: "Photo",
     data() {
       return {
-        form: {}
+        form: {
+          url: ''
+        }
+      }
+    },
+    methods: {
+      getPhoto() {
+        this.$axios.post('/ins-photo', { ...this.form })
       }
     }
   }

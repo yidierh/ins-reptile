@@ -41,7 +41,7 @@
       z-index: 1001;
     }
     .main-container {
-      padding: 0 25px;
+      padding: 16px;
       min-height: 100%;
       margin-left: 180px;
       position: relative;

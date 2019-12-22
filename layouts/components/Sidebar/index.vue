@@ -3,11 +3,11 @@
     default-active="1"
     @select="selectHandler">
     <el-menu-item index="1">
-      <i class="el-icon-menu"></i>
+      <i class="el-icon-picture-outline"></i>
       <span slot="title">INSTAGRAM</span>
     </el-menu-item>
     <el-menu-item index="2">
-      <i class="el-icon-document"></i>
+      <i class="el-icon-video-camera"></i>
       <span slot="title">YOUTUBE</span>
     </el-menu-item>
   </el-menu>

@@ -8,15 +8,14 @@ const ins = {
   insPhoto: async (ctx, next) => {
     let url = ctx.request.body.url
     if (url) {
-      reptile(url)
+      const res = await reptile(url)
       ctx.body = {
-        status: 200,
-        success: true
+        data: res,
+        status: 200
       }
     } else {
       ctx.body = {
         status: 400,
-        success: false,
         err_message: 'url is must be required!'
       }
     }

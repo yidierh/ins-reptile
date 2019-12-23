@@ -29,27 +29,44 @@ const reptile = (targetUrl) => {
     gzip: true,
     timeout: 15000
   }
-  api(options, function (err, res) {
-    const html = res.body
-    const start = html.indexOf('window._sharedData =')
-    const end = html.indexOf('<', start)
-    const shareData = JSON.parse(html.substring(start + 21, end - 1))
-    const media = shareData['entry_data']['PostPage'][0]['graphql']['shortcode_media']
+  return new Promise((resolve, reject) => {
+    api(options, function (err, res) {
 
-    let videoUrl = null
-    let imgArr = null
-
-    if (media['is_video']) { // 视频
-      videoUrl = media['video_url']
-    } else { // 图片
-      if (media['edge_sidecar_to_children']) { // 多图
-        imgArr = media['edge_sidecar_to_children']['edges'] // 这里要push
-      } else {
-        imgArr = media['display_url']
+      if (err) {
+        reject(err)
       }
-    }
-    console.log(videoUrl)
-    console.log(imgArr)
+
+      const html = res.body
+      const start = html.indexOf('window._sharedData =')
+      const end = html.indexOf('<', start)
+      const shareData = JSON.parse(html.substring(start + 21, end - 1))
+      const media = shareData['entry_data']['PostPage'][0]['graphql']['shortcode_media']
+
+      let videoUrl = null
+      let imgArr = []
+
+      if (media['is_video']) { // 视频
+        videoUrl = media['video_url']
+      } else { // 图片
+        if (media['edge_sidecar_to_children']) { // 多图
+          const imgs = media['edge_sidecar_to_children']['edges'] // 这里要push
+          imgs.forEach(item => {
+            imgArr.push(item['node']['display_url'])
+          })
+        } else {
+          imgArr.push(media['display_url'])
+        }
+      }
+
+      // 作者信息
+      const onwer = {
+        is_verified: media['owner']['is_verified'],
+        profile_pic_url: media['owner']['profile_pic_url'],
+        full_name: media['owner']['full_name']
+      }
+
+      resolve ({ type: media['is_video'] ? 'video' : 'photo', onwer: onwer, video_url: videoUrl, imgs: imgArr })
+    })
   })
 }
 

@@ -9,13 +9,14 @@ const ins = {
     let url = ctx.request.body.url
     if (url) {
       const res = await reptile(url)
-      ctx.body = {
+      ctx.response.body = {
         data: res,
-        status: 200
+        err_code: 200
       }
-    } else {
-      ctx.body = {
-        status: 400,
+    }
+     else {
+      ctx.response.body = {
+        err_code: 400,
         err_message: 'url is must be required!'
       }
     }

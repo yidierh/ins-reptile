@@ -10,7 +10,9 @@ export default function ({store, redirect, app: { $axios }})  {
 
   })
   // response拦截器，数据返回后，你可以先在这里进行一个简单的判断
-  $axios.interceptors.response.use(response => {
-
+  $axios.interceptors.response.use(res => {
+    if (res.status === 200) {
+      return res.data
+    }
   })
 }

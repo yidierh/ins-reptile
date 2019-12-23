@@ -1,18 +1,29 @@
 <template>
   <section class="photo-container">
+    <!-- 抓取部分 -->
     <el-form ref="photoForm" :model="form" :rules="rules" label-width="80px">
       <el-form-item prop="url" required label="链接地址">
         <el-input v-model="form.url" placeholder="请输入要抓取的图片地址" clearable=""></el-input>
       </el-form-item>
       <el-form-item>
+        <el-alert
+          title="使用方法：instagram 里面点分享复制链接，然后将链接粘贴到输入框中"
+          type="warning"
+          :closable="false">
+        </el-alert>
+      </el-form-item>
+      <el-form-item>
         <el-button type="primary" @click="getPhoto">抓取</el-button>
       </el-form-item>
     </el-form>
+
+    <!-- 抓取的内容 -->
   </section>
 </template>
 
 <script>
-  import { validUrl } from '~/validate'
+  import {validUrl} from '~/validate'
+
   export default {
     name: "Instagram",
     data() {
@@ -21,15 +32,31 @@
           url: ''
         },
         rules: {
-          url: [{ validator: validUrl, trigger: 'blur' }]
-        }
+          url: [{validator: validUrl, trigger: 'blur'}]
+        },
+        insData: {}
       }
     },
     methods: {
       getPhoto() {
         this.$refs['photoForm'].validate(valid => {
-          if(valid) {
-            this.$axios.post('/get-ins-data', { ...this.form })
+          if (valid) {
+            const loading = this.$loading({
+              lock: true,
+              text: 'Loading',
+              spinner: 'el-icon-loading',
+              background: 'rgba(0, 0, 0, 0.7)'
+            })
+            this.$axios.post('/get-ins-data', {...this.form})
+              .then(res => {
+                if (res.err_code === 200) {
+                  this.insData = { ...res.data }
+                  loading.close()
+                }
+              })
+              .catch(() => {
+                loading.close()
+              })
           }
         })
       }

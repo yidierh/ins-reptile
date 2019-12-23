@@ -4,6 +4,7 @@
  * @email yidierh@gmail.com
  */
 import request from 'request'
+import server from '../../../config'
 
 const headers = {
   'Connection': 'keep-alive',
@@ -13,7 +14,7 @@ const headers = {
   'X-Requested-With': 'XMLHttpRequest'
 }
 
-const api = request.defaults({proxy: 'http://127.0.0.1:1080', jar: true})  // 用其他代理，记得修改代理端口
+const api = request.defaults({proxy: `http://127.0.0.1:${server.port}`, jar: true})  // 用其他代理，记得修改代理端口
 
 const reptile = (targetUrl) => {
   const options = {
@@ -31,16 +32,24 @@ const reptile = (targetUrl) => {
   }
   return new Promise((resolve, reject) => {
     api(options, function (err, res) {
-
+      console.log('proxy', server.proxy)
+      console.log(err)
       if (err) {
         reject(err)
+        return false
       }
-
       const html = res.body
       const start = html.indexOf('window._sharedData =')
       const end = html.indexOf('<', start)
       const shareData = JSON.parse(html.substring(start + 21, end - 1))
       const media = shareData['entry_data']['PostPage'][0]['graphql']['shortcode_media']
+
+      // 作者信息
+      const onwer = {
+        is_verified: media['owner']['is_verified'],
+        profile_pic_url: media['owner']['profile_pic_url'],
+        full_name: media['owner']['full_name']
+      }
 
       let videoUrl = null
       let imgArr = []
@@ -56,13 +65,6 @@ const reptile = (targetUrl) => {
         } else {
           imgArr.push(media['display_url'])
         }
-      }
-
-      // 作者信息
-      const onwer = {
-        is_verified: media['owner']['is_verified'],
-        profile_pic_url: media['owner']['profile_pic_url'],
-        full_name: media['owner']['full_name']
       }
 
       resolve ({ type: media['is_video'] ? 'video' : 'photo', onwer: onwer, video_url: videoUrl, imgs: imgArr })

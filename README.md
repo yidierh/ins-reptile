@@ -4,7 +4,7 @@
 
 ## 使用方法
 
-> 代理需要开启全局代理，然后在 server/interface/modules/ins/reptile.js 文件中将端口号修改为你的代理端口
+> 代理需要开启全局代理，然后在 server/config.js 文件中将端口号修改为你的代理端口
 
 ## Build Setup
 

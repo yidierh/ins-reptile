@@ -12,6 +12,6 @@ const router = new Router({
   prefix: '/api',
 })
 
-router.post('/ins-photo', ins.insPhoto)
+router.post('/get-ins-data', ins.insPhoto)
 
 export default router

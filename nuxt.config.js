@@ -48,6 +48,12 @@ module.exports = {
     less: './assets/**/*.less',
     // sass: ...
   },
+  // 前端中间件
+  router: {
+    middleware: []
+  },
+  // 服务端中间件
+  serverMiddleware: [],
   /*
   ** Build configuration
   */

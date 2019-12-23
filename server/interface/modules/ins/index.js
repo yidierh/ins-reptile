@@ -3,10 +3,12 @@
  * @date 2019-12-23
  * @email yidierh@gmail.com
  */
+import reptile from './reptile'
 const ins = {
   insPhoto: async (ctx, next) => {
     let url = ctx.request.body.url
     if (url) {
+      reptile(url)
       ctx.body = {
         status: 200,
         success: true

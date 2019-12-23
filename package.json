@@ -23,11 +23,13 @@
     "@babel/preset-env": "^7.7.7",
     "@nuxtjs/axios": "^5.9.0",
     "@nuxtjs/style-resources": "^1.0.0",
+    "cheerio": "^1.0.0-rc.3",
     "core-js": "^2.6.5",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
-    "nodemon": "^1.18.9"
+    "nodemon": "^1.18.9",
+    "request": "^2.88.0"
   }
 }

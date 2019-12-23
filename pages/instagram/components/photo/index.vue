@@ -1,10 +1,10 @@
 <template>
   <div class="photo-container">
     <el-image
-      style="width: 100%; min-height: 375px; background: #C0C4CC;"
+      style="width: 100%; min-height: 200px; background: #C0C4CC;"
       :src="insData && insData.imgs ? insData.imgs[0]: ''"
-      :preview-src-list="insData && insData.imgs ? insData.imgs: []">
-    </el-image>
+      :preview-src-list="insData && insData.imgs ? insData.imgs: []"
+      lazy></el-image>
     <el-alert
       title="点击可预览大图"
       type="success"

@@ -10,7 +10,7 @@ const config = require('../nuxt.config.js')
 config.dev = app.env !== 'production'
 
 // Interface
-import insInterface from './interface/ins.js'
+import Interface from './interface'
 
 async function start () {
   // Instantiate nuxt.js
@@ -31,7 +31,7 @@ async function start () {
 
   // Interface
   app.use(bodyParser())
-  app.use(insInterface.routes())
+  app.use(Interface.routes())
 
   app.use((ctx) => {
     ctx.status = 200

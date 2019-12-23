@@ -1,12 +1,9 @@
 <template>
   <div class="photo-container">
     <el-image
-      style="width: 100%;"
+      style="width: 100%; min-height: 375px; background: #C0C4CC;"
       :src="insData && insData.imgs ? insData.imgs[0]: ''"
       :preview-src-list="insData && insData.imgs ? insData.imgs: []">
-      <div slot="placeholder" class="image-slot">
-        加载中<span class="dot">...</span>
-      </div>
     </el-image>
     <el-alert
       title="点击可预览大图"

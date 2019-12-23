@@ -22,8 +22,14 @@
             <div class="photo-container-content">
               <component :is="insData && insData.type === 'photo' ? 'photo' : 'video'" :ins-data="insData"/>
               <div class="photo-container-content-owner">
-                <el-avatar :src="insData && insData.onwer ? insData.onwer.profile_pic_url : ''"></el-avatar>
-                <h3>{{ insData && insData.onwer ? insData.onwer.full_name: '' }}</h3>
+                <div class="photo-container-content-owner-avatar">
+                  <el-avatar :src="insData && insData.onwer ? insData.onwer.profile_pic_url : ''"></el-avatar>
+                </div>
+                <el-alert
+                  :title="`作者：${insData && insData.onwer ? insData.onwer.full_name: ''}`"
+                  type="info"
+                  :closable="false">
+                </el-alert>
               </div>
             </div>
           </el-form-item>
@@ -85,6 +91,11 @@
       display: inline-flex;
       &-owner {
         margin-left: 16px;
+        &-avatar {
+          .el-avatar {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
+          }
+        }
       }
     }
   }

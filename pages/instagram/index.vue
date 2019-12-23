@@ -15,17 +15,32 @@
       <el-form-item>
         <el-button type="primary" @click="getPhoto">抓取</el-button>
       </el-form-item>
+      <!-- 抓取的内容 -->
+      <transition name="fade">
+        <template v-if="insData.type">
+          <el-form-item label="抓取结果">
+            <div class="photo-container-content">
+              <component :is="insData && insData.type === 'photo' ? 'photo' : 'video'" :ins-data="insData"/>
+              <div class="photo-container-content-owner">
+                <el-avatar :src="insData && insData.onwer ? insData.onwer.profile_pic_url : ''"></el-avatar>
+                <h3>{{ insData && insData.onwer ? insData.onwer.full_name: '' }}</h3>
+              </div>
+            </div>
+          </el-form-item>
+        </template>
+      </transition>
     </el-form>
-
-    <!-- 抓取的内容 -->
   </section>
 </template>
 
 <script>
   import {validUrl} from '~/validate'
+  import photo from './components/photo'
+  import video from './components/video'
 
   export default {
     name: "Instagram",
+    components: {photo, video},
     data() {
       return {
         form: {
@@ -43,14 +58,14 @@
           if (valid) {
             const loading = this.$loading({
               lock: true,
-              text: 'Loading',
+              text: '抓取中...',
               spinner: 'el-icon-loading',
               background: 'rgba(0, 0, 0, 0.7)'
             })
             this.$axios.post('/get-ins-data', {...this.form})
               .then(res => {
                 if (res.err_code === 200) {
-                  this.insData = { ...res.data }
+                  this.insData = {...res.data}
                   loading.close()
                 }
               })
@@ -64,6 +79,13 @@
   }
 </script>
 
-<style rel="stylesheet/less" lang="less" scoped>
-
+<style rel="stylesheet/less" lang="less">
+  .photo-container {
+    &-content {
+      display: inline-flex;
+      &-owner {
+        margin-left: 16px;
+      }
+    }
+  }
 </style>

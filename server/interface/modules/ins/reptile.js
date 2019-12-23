@@ -28,16 +28,16 @@ const reptile = (targetUrl) => {
       'X-Requested-With': 'XMLHttpRequest'
     },
     gzip: true,
-    timeout: 15000
+    timeout: 150000
   }
   return new Promise((resolve, reject) => {
     api(options, function (err, res) {
-      console.log('proxy', server.proxy)
-      console.log(err)
+
       if (err) {
         reject(err)
         return false
       }
+
       const html = res.body
       const start = html.indexOf('window._sharedData =')
       const end = html.indexOf('<', start)

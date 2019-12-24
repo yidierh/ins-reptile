@@ -7,7 +7,7 @@ import fs from 'fs'
 import api from '../../../api'
 import Bagpipe from 'bagpipe'
 
-const dowlandPic = (src, dest) => {
+const downlandPic = (src, dest) => {
   api(src).pipe(fs.createWriteStream(dest)).on('close', () => {
     console.log('pic saved!')
   })
@@ -16,9 +16,10 @@ const dowlandPic = (src, dest) => {
 const downlandPhoto = (imgList) => {
 
   const bagpipe = new Bagpipe(10)
+
   imgList.forEach(item => {
-    bagpipe.push(dowlandPic, item, './downlands/' + new Date().getTime() + '.jpg', function (err, data) {
-      console.log(err)
+    bagpipe.push(downlandPic, item, './downlands/' + new Date().getTime() + '.jpg', function (err, data) {
+      console.log(data)
     })
   })
 }

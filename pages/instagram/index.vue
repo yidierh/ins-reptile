@@ -1,7 +1,7 @@
 <template>
-  <section class="photo-container">
+  <section class="ins-container">
     <!-- 抓取部分 -->
-    <el-form ref="photoForm" :model="form" :rules="rules" label-width="80px">
+    <el-form ref="insForm" :model="form" :rules="rules" label-width="80px">
       <el-form-item prop="url" required label="链接地址">
         <el-input v-model="form.url" placeholder="请输入要抓取的图片地址" clearable></el-input>
       </el-form-item>
@@ -22,22 +22,22 @@
       <transition name="fade">
         <template v-if="insData.type">
           <el-form-item>
-            <div class="photo-container-content">
-              <div class="photo-container-content-data">
+            <div class="ins-container-content">
+              <div class="ins-container-content-data">
                 <component :is="insData && insData.type === 'photo' ? 'photo' : 'rVideo'" :ins-data="insData"/>
               </div>
-              <div class="photo-container-content-owner">
-                <div class="photo-container-content-owner-avatar">
+              <div class="ins-container-content-owner">
+                <div class="ins-container-content-owner-avatar">
                   <el-avatar :src="insData && insData.onwer ? insData.onwer.profile_pic_url : ''"></el-avatar>
                 </div>
-                <div class="photo-container-content-owner-author">
+                <div class="ins-container-content-owner-author">
                   <el-alert
                     :title="`作者：${insData && insData.onwer ? insData.onwer.username: ''}`"
                     type="info"
                     :closable="false">
                   </el-alert>
                 </div>
-                <div class="photo-container-content-owner-text" v-if="insData && insData.text">
+                <div class="ins-container-content-owner-text" v-if="insData && insData.text">
                   <el-alert
                     :title="insData.text"
                     type="info"
@@ -74,7 +74,7 @@
     },
     methods: {
       getPhoto() {
-        this.$refs['photoForm'].validate(valid => {
+        this.$refs['insForm'].validate(valid => {
           if (valid) {
             const loading = this.$loading({
               lock: true,
@@ -98,17 +98,17 @@
 </script>
 
 <style rel="stylesheet/less" lang="less">
-  .photo-container {
+  .ins-container {
     &-content {
       display: inline-flex;
-
+      width: 100%;
       &-data {
         flex: 1;
       }
 
       &-owner {
         margin-left: 16px;
-
+        width: 100%;
         &-avatar {
           .el-avatar {
             box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)

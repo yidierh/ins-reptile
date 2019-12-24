@@ -7,21 +7,31 @@ import fs from 'fs'
 import api from '../../../api'
 import Bagpipe from 'bagpipe'
 
-const downlandPic = (src, dest) => {
-  api(src).pipe(fs.createWriteStream(dest)).on('close', () => {
-    console.log('pic saved!')
-  })
-}
-
 const downlandPhoto = (imgList) => {
 
-  const bagpipe = new Bagpipe(10)
+  const maxLength =  imgList.length
+  let times = 1
 
-  imgList.forEach(item => {
-    bagpipe.push(downlandPic, item, './downlands/' + new Date().getTime() + '.jpg', function (err, data) {
-      console.log(data)
+  return new Promise((resolve, reject) => {
+    const downlandPic = (src, dest) => {
+      api(src).pipe(fs.createWriteStream(dest)).on('close', () => {
+        if (times < maxLength) {
+          ++times
+        } else {
+          resolve('pic saved!')
+        }
+      })
+    }
+
+    const bagpipe = new Bagpipe(10)
+
+    imgList.forEach(item => {
+      bagpipe.push(downlandPic, item, './downlands/' + new Date().getTime() + '.jpg', function (err, data) {
+        reject(err)
+      })
     })
   })
+
 }
 
 export default downlandPhoto

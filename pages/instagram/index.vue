@@ -45,7 +45,7 @@
                   </el-alert>
                 </div>
                 <div class="ins-container-content-owner-btn">
-                  <el-button type="success" @click="downland(insData.type)">下载资源 <i class="el-icon-download el-icon--right"></i></el-button>
+                  <el-button :loading="btnLoading" type="success" @click="downland(insData.type)">下载资源 <i class="el-icon-download el-icon--right"></i></el-button>
                 </div>
               </div>
             </div>
@@ -72,7 +72,8 @@
         rules: {
           url: [{validator: validUrl, trigger: 'blur'}]
         },
-        insData: {}
+        insData: {},
+        btnLoading: false
       }
     },
     methods: {
@@ -98,9 +99,15 @@
       },
       downland(type) {
         if (type === 'photo') { // 图片下载
-          this.$axios.post('/downland', { type: type, data: this.insData.imgs })
+          this.btnLoading = true
+          this.$axios.post('/downland', { type: type, data: this.insData.imgs }).then(() => {
+            this.$message.success('下载成功，请到根目录下的 downlands 文件夹中查看')
+            this.btnLoading = false
+          }).catch(()=> {
+            this.btnLoading = true
+          })
         } else { // 视频下载
-
+          this.$message.warning('视频下载暂不支持')
         }
       }
     }

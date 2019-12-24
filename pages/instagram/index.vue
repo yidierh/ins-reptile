@@ -13,7 +13,7 @@
         </el-alert>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="getPhoto">抓取</el-button>
+        <el-button type="primary" @click="getPhoto">抓取<i class="el-icon-check el-icon--right"></i></el-button>
       </el-form-item>
       <!-- 抓取的内容 -->
       <transition name="fade">
@@ -43,6 +43,9 @@
                     type="info"
                     :closable="false">
                   </el-alert>
+                </div>
+                <div class="ins-container-content-owner-btn">
+                  <el-button type="success">下载资源 <i class="el-icon-download el-icon--right"></i></el-button>
                 </div>
               </div>
             </div>
@@ -115,7 +118,7 @@
           }
         }
         &-author {}
-        &-text {
+        &-text, &-btn {
           margin-top: 15px;
         }
       }

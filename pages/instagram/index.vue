@@ -24,7 +24,7 @@
           <el-form-item>
             <div class="photo-container-content">
               <div class="photo-container-content-data">
-                <component :is="insData && insData.type === 'photo' ? 'photo' : 'video'" :ins-data="insData"/>
+                <component :is="insData && insData.type === 'photo' ? 'photo' : 'rVideo'" :ins-data="insData"/>
               </div>
               <div class="photo-container-content-owner">
                 <div class="photo-container-content-owner-avatar">
@@ -56,11 +56,11 @@
 <script>
   import {validUrl} from '~/validate'
   import photo from './components/photo'
-  import video from './components/video'
+  import rVideo from './components/video'
 
   export default {
     name: "Instagram",
-    components: {photo, video},
+    components: {photo, rVideo},
     data() {
       return {
         form: {

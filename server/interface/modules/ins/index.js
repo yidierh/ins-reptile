@@ -8,10 +8,19 @@ const ins = {
   insPhoto: async (ctx, next) => {
     let url = ctx.request.body.url
     if (url) {
-      const res = await reptile(url)
-      ctx.response.body = {
-        data: res,
-        err_code: 200
+      try {
+        const res = await reptile(url)
+        ctx.response.body = {
+          data: res,
+          err_code: 200
+        }
+      } catch (err) {
+        if (err.code === 'ECONNRESET') {
+          ctx.response.body = {
+            err_code: 401,
+            err_message: '请检查代理端口号是否正确！'
+          }
+        }
       }
     }
      else {

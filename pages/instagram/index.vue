@@ -70,10 +70,8 @@
             })
             this.$axios.post('/get-ins-data', {...this.form})
               .then(res => {
-                if (res.err_code === 200) {
-                  this.insData = {...res.data}
-                  loading.close()
-                }
+                this.insData = {...res.data}
+                loading.close()
               })
               .catch(() => {
                 loading.close()
@@ -89,8 +87,10 @@
   .photo-container {
     &-content {
       display: inline-flex;
+
       &-owner {
         margin-left: 16px;
+
         &-avatar {
           .el-avatar {
             box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)

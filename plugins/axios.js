@@ -1,4 +1,5 @@
-export default function ({store, redirect, app: { $axios }})  {
+import { Message } from 'element-ui'
+export default function ({store, redirect, app: {$axios}}) {
   // 数据访问前缀
   $axios.defaults.baseURL = 'http://localhost:3000/api/'
 
@@ -10,9 +11,21 @@ export default function ({store, redirect, app: { $axios }})  {
 
   })
   // response拦截器，数据返回后，你可以先在这里进行一个简单的判断
-  $axios.interceptors.response.use(res => {
-    if (res.status === 200) {
-      return res.data
-    }
-  })
+  $axios.interceptors.response.use(
+    res => {
+      const _data = res.data
+      if (res.status === 200) {
+        switch (_data.err_code) {
+          case 200:
+            return _data
+          case 400:
+          case 401:
+            Message.error(_data.err_message)
+            throw new Error(_data)
+        }
+      }
+    },
+    error => {
+      return Promise.reject(error)
+    })
 }

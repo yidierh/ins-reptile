@@ -5,7 +5,7 @@
  */
 import reptile from './reptile'
 const ins = {
-  insPhoto: async (ctx, next) => {
+  insPhoto: async ctx => {
     let url = ctx.request.body.url
     if (url) {
       try {

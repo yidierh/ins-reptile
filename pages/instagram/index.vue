@@ -45,7 +45,7 @@
                   </el-alert>
                 </div>
                 <div class="ins-container-content-owner-btn">
-                  <el-button type="success">下载资源 <i class="el-icon-download el-icon--right"></i></el-button>
+                  <el-button type="success" @click="downland(insData.type)">下载资源 <i class="el-icon-download el-icon--right"></i></el-button>
                 </div>
               </div>
             </div>
@@ -95,6 +95,13 @@
               })
           }
         })
+      },
+      downland(type) {
+        if (type === 'photo') { // 图片下载
+          this.$axios.post('/downland', { type: type, data: this.insData.imgs })
+        } else { // 视频下载
+
+        }
       }
     }
   }

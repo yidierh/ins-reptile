@@ -3,8 +3,7 @@
  * @date 2019-12-23
  * @email yidierh@gmail.com
  */
-import request from 'request'
-import server from '../../../config'
+import api from '../../../api'
 
 const headers = {
   'Connection': 'keep-alive',
@@ -13,8 +12,6 @@ const headers = {
   'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
   'X-Requested-With': 'XMLHttpRequest'
 }
-
-const api = request.defaults({proxy: `http://127.0.0.1:${server.port}`, jar: true})  // 用其他代理，记得修改代理端口
 
 const reptile = (targetUrl) => {
   const options = {

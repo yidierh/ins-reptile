@@ -8,6 +8,13 @@ const ins = {
   insPhoto: async ctx => {
     let url = ctx.request.body.url
     if (url) {
+      if (url.indexOf('https://www.instagram.com/') < 0) {
+        ctx.response.body = {
+          err_code: 400,
+          err_message: '请检查该链接是否为 instagram 链接！'
+        }
+        return false
+      }
       try {
         const res = await reptile(url)
         ctx.response.body = {

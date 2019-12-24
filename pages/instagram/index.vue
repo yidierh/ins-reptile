@@ -107,7 +107,12 @@
             this.btnLoading = true
           })
         } else { // 视频下载
-          this.$message.warning('视频下载暂不支持')
+          this.btnLoading = true
+          this.$message.warning('即将为您跳转至下载页，点击视频右下角下载即可')
+          setTimeout(()=>{
+            this.btnLoading = false
+            window.open(`${this.insData.video_url}`, '_blank')
+          }, 2000)
         }
       }
     }

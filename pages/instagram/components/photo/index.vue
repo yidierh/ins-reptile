@@ -9,7 +9,7 @@
     </div>
     <el-alert
       :title="`点击可预览大图 / 总共 ${insData.imgs.length ? insData.imgs.length : 0} 张图片`"
-      type="success"
+      type="warning"
       :closable="false">
     </el-alert>
   </div>

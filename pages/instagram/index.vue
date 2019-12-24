@@ -17,8 +17,11 @@
       </el-form-item>
       <!-- 抓取的内容 -->
       <transition name="fade">
+        <el-divider v-if="insData.type"><i class="el-icon-sunrise"></i> 抓取结果</el-divider>
+      </transition>
+      <transition name="fade">
         <template v-if="insData.type">
-          <el-form-item label="抓取结果">
+          <el-form-item>
             <div class="photo-container-content">
               <div class="photo-container-content-data">
                 <component :is="insData && insData.type === 'photo' ? 'photo' : 'video'" :ins-data="insData"/>

@@ -3,7 +3,7 @@
     <!-- 抓取部分 -->
     <el-form ref="photoForm" :model="form" :rules="rules" label-width="80px">
       <el-form-item prop="url" required label="链接地址">
-        <el-input v-model="form.url" placeholder="请输入要抓取的图片地址" clearable=""></el-input>
+        <el-input v-model="form.url" placeholder="请输入要抓取的图片地址" clearable></el-input>
       </el-form-item>
       <el-form-item>
         <el-alert
@@ -20,16 +20,27 @@
         <template v-if="insData.type">
           <el-form-item label="抓取结果">
             <div class="photo-container-content">
-              <component :is="insData && insData.type === 'photo' ? 'photo' : 'video'" :ins-data="insData"/>
+              <div class="photo-container-content-data">
+                <component :is="insData && insData.type === 'photo' ? 'photo' : 'video'" :ins-data="insData"/>
+              </div>
               <div class="photo-container-content-owner">
                 <div class="photo-container-content-owner-avatar">
                   <el-avatar :src="insData && insData.onwer ? insData.onwer.profile_pic_url : ''"></el-avatar>
                 </div>
-                <el-alert
-                  :title="`作者：${insData && insData.onwer ? insData.onwer.full_name: ''}`"
-                  type="info"
-                  :closable="false">
-                </el-alert>
+                <div class="photo-container-content-owner-author">
+                  <el-alert
+                    :title="`作者：${insData && insData.onwer ? insData.onwer.username: ''}`"
+                    type="info"
+                    :closable="false">
+                  </el-alert>
+                </div>
+                <div class="photo-container-content-owner-text" v-if="insData && insData.text">
+                  <el-alert
+                    :title="insData.text"
+                    type="info"
+                    :closable="false">
+                  </el-alert>
+                </div>
               </div>
             </div>
           </el-form-item>
@@ -88,6 +99,10 @@
     &-content {
       display: inline-flex;
 
+      &-data {
+        flex: 1;
+      }
+
       &-owner {
         margin-left: 16px;
 
@@ -95,6 +110,10 @@
           .el-avatar {
             box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
           }
+        }
+        &-author {}
+        &-text {
+          margin-top: 15px;
         }
       }
     }

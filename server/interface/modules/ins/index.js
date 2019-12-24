@@ -20,6 +20,11 @@ const ins = {
             err_code: 401,
             err_message: '请检查代理端口号是否正确！'
           }
+        } else if (err.code === 'PRIVATE') {
+          ctx.response.body = {
+            err_code: 402,
+            err_message: '暂时无法抓取私密账户数据！'
+          }
         }
       }
     }

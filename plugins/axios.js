@@ -20,6 +20,7 @@ export default function ({store, redirect, app: {$axios}}) {
             return _data
           case 400:
           case 401:
+          case 402:
             Message.error(_data.err_message)
             throw new Error(_data)
         }

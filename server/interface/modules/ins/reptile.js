@@ -42,17 +42,28 @@ const reptile = (targetUrl) => {
       const start = html.indexOf('window._sharedData =')
       const end = html.indexOf('<', start)
       const shareData = JSON.parse(html.substring(start + 21, end - 1))
+
+      if (shareData['entry_data'] && !shareData['entry_data']['PostPage']) { // 私密账户
+        reject({ code: 'PRIVATE' })
+        return false
+      }
+
       const media = shareData['entry_data']['PostPage'][0]['graphql']['shortcode_media']
 
       // 作者信息
       const onwer = {
         is_verified: media['owner']['is_verified'],
         profile_pic_url: media['owner']['profile_pic_url'],
-        full_name: media['owner']['full_name']
+        username: media['owner']['username']
       }
 
       let videoUrl = null
       let imgArr = []
+      let text = ''
+
+      if (media['edge_media_to_caption']['edges'].length) {
+        text = media['edge_media_to_caption']['edges'][0]['node']['text']
+      }
 
       if (media['is_video']) { // 视频
         videoUrl = media['video_url']
@@ -67,7 +78,7 @@ const reptile = (targetUrl) => {
         }
       }
 
-      resolve ({ type: media['is_video'] ? 'video' : 'photo', onwer: onwer, video_url: videoUrl, imgs: imgArr })
+      resolve ({ type: media['is_video'] ? 'video' : 'photo', onwer: onwer, video_url: videoUrl, imgs: imgArr, text: text })
     })
   })
 }

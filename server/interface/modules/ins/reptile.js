@@ -48,7 +48,7 @@ const reptile = (targetUrl) => {
       const media = shareData['entry_data']['PostPage'][0]['graphql']['shortcode_media']
 
       // 作者信息
-      const onwer = {
+      const owner = {
         is_verified: media['owner']['is_verified'],
         profile_pic_url: media['owner']['profile_pic_url'],
         username: media['owner']['username']
@@ -58,7 +58,7 @@ const reptile = (targetUrl) => {
       let imgArr = []
       let text = ''
 
-      if (media['edge_media_to_caption']['edges'].length) {
+      if (media['edge_media_to_caption']['edges']['length']) {
         text = media['edge_media_to_caption']['edges'][0]['node']['text']
       }
 
@@ -75,7 +75,7 @@ const reptile = (targetUrl) => {
         }
       }
 
-      resolve ({ type: media['is_video'] ? 'video' : 'photo', onwer: onwer, video_url: videoUrl, imgs: imgArr, text: text })
+      resolve ({ type: media['is_video'] ? 'video' : 'photo', owner: owner, video_url: videoUrl, imgs: imgArr, text: text })
     })
   })
 }

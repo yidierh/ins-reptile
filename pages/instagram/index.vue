@@ -28,11 +28,11 @@
               </div>
               <div class="ins-container-content-owner">
                 <div class="ins-container-content-owner-avatar">
-                  <el-avatar :src="insData && insData.onwer ? insData.onwer.profile_pic_url : ''"></el-avatar>
+                  <el-avatar :src="insData && insData.owner ? insData.owner.profile_pic_url : ''"></el-avatar>
                 </div>
                 <div class="ins-container-content-owner-author">
                   <el-alert
-                    :title="`作者：${insData && insData.onwer ? insData.onwer.username: ''}`"
+                    :title="`作者：${insData && insData.owner ? insData.owner.username: ''}`"
                     type="info"
                     :closable="false">
                   </el-alert>

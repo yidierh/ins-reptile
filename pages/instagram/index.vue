@@ -13,7 +13,7 @@
         </el-alert>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="getPhoto">抓取<i class="el-icon-check el-icon--right"></i></el-button>
+        <el-button type="primary" @click="getPhoto">抓取</el-button>
       </el-form-item>
       <!-- 抓取的内容 -->
       <transition name="fade">

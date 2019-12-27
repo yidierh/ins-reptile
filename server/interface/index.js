@@ -13,8 +13,8 @@ const router = new Router({
   prefix: '/api',
 })
 
-// ins
-router.post('/get-ins-data', ins.insPhoto)
+// instagram
+router.post('/get-instagram-data', ins.insPhoto)
 
 // downland
 router.post('/downland', downland.img)

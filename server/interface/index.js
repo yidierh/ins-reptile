@@ -14,7 +14,7 @@ const router = new Router({
 })
 
 // instagram
-router.post('/get-instagram-data', ins.insPhoto)
+router.post('/get-ins-data', ins.insPhoto)
 
 // downland
 router.post('/downland', downland.img)

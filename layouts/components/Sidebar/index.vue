@@ -1,6 +1,6 @@
 <template>
   <el-menu
-    default-active="1"
+    default-active=""
     @select="selectHandler">
     <el-menu-item index="1">
       <i class="el-icon-picture-outline"></i>

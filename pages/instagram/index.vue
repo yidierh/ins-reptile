@@ -44,9 +44,9 @@
                     :closable="false">
                   </el-alert>
                 </div>
-                <div class="ins-container-content-owner-btn">
-                  <el-button :loading="btnLoading" type="success" @click="downland(insData.type)">下载资源 <i class="el-icon-download el-icon--right"></i></el-button>
-                </div>
+                <!--<div class="ins-container-content-owner-btn">
+                  <el-button :loading="btnLoading" type="success" @click="downland(insData.type)">下载资源 <i class="el-icon-download el-icon&#45;&#45;right"></i></el-button>
+                </div>-->
               </div>
             </div>
           </el-form-item>

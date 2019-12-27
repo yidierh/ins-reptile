@@ -8,18 +8,18 @@
 
 <script>
   let myVideo = {}
-  if(process.browser) {
+  if (process.browser) {
     myVideo = require('vue-video')
   }
   export default {
     name: "Video",
-    components: { 'my-video': myVideo },
+    components: {'my-video': myVideo},
     watch: {
       insData: {
         immediate: true,
         handler(val) {
           if (val) {
-            this.video.sources.push({ src: val.video_url })
+            this.video.sources.push({src: val.video_url})
           }
         }
       }

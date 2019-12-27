@@ -13,7 +13,7 @@
         </el-alert>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="getPhoto">抓取<i class="el-icon-check el-icon--right"></i></el-button>
+        <el-button type="primary" @click="getPhoto">抓取</el-button>
       </el-form-item>
       <!-- 抓取的内容 -->
       <transition name="fade">
@@ -28,11 +28,11 @@
               </div>
               <div class="ins-container-content-owner">
                 <div class="ins-container-content-owner-avatar">
-                  <el-avatar :src="insData && insData.onwer ? insData.onwer.profile_pic_url : ''"></el-avatar>
+                  <el-avatar :src="insData && insData.owner ? insData.owner.profile_pic_url : ''"></el-avatar>
                 </div>
                 <div class="ins-container-content-owner-author">
                   <el-alert
-                    :title="`作者：${insData && insData.onwer ? insData.onwer.username: ''}`"
+                    :title="`作者：${insData && insData.owner ? insData.owner.username: ''}`"
                     type="info"
                     :closable="false">
                   </el-alert>
@@ -99,13 +99,14 @@
       },
       downland(type) {
         if (type === 'photo') { // 图片下载
-          this.btnLoading = true
-          this.$axios.post('/downland', { type: type, data: this.insData.imgs }).then(() => {
-            this.$message.success('下载成功，请到根目录下的 downlands 文件夹中查看')
-            this.btnLoading = false
-          }).catch(()=> {
-            this.btnLoading = true
-          })
+          // this.btnLoading = true
+          this.$message.warning('鼠标右键点图片下载即可')
+          // this.$axios.post('/downland', { type: type, data: this.insData.imgs }).then(() => {
+          //   this.$message.success('下载成功，请到根目录下的 downlands 文件夹中查看')
+          //   this.btnLoading = false
+          // }).catch(()=> {
+          //   this.btnLoading = true
+          // })
         } else { // 视频下载
           this.btnLoading = true
           this.$message.warning('即将为您跳转至下载页，点击视频右下角下载即可')

@@ -16,8 +16,8 @@
 <style rel="stylesheet/less" lang="less" scoped>
   .pay-container {
     position: fixed;
-    top: 30vh;
-    right: 30px;
+    bottom: 5px;
+    right: 22px;
     z-index: 9999;
     &-title {
       font-weight: bold;

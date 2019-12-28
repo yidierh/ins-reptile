@@ -8,13 +8,6 @@
       <h2 class="subtitle">
         Instagram 照片视频抓取工具
       </h2>
-
-      <div class="pay-container">
-        <h3 class="pay-container-title">喜欢的话，打赏一下吧</h3>
-        <div class="pay-container-img">
-          <img width="200px" src="@/assets/pay.jpg">
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -55,21 +48,5 @@
     color: #526488;
     word-spacing: 5px;
     padding-bottom: 15px;
-  }
-
-  .pay-container {
-    position: fixed;
-    top: 30vh;
-    right: 30px;
-    &-title {
-      font-weight: bold;
-      width: 100%;
-      color: #333;
-      word-spacing: 5px;
-      line-height: 40px;
-    }
-    &-img {
-      width: 100px;
-    }
   }
 </style>

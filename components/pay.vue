@@ -18,7 +18,7 @@
     position: fixed;
     top: 30vh;
     right: 30px;
-
+    z-index: 999;
     &-title {
       font-weight: bold;
       width: 100%;

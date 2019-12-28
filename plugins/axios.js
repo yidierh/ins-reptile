@@ -2,8 +2,8 @@ import {Message} from 'element-ui'
 
 export default function ({store, redirect, app: {$axios}}) {
   // 数据访问前缀
-  $axios.defaults.baseURL =
-    process.env.NODE_ENV === 'production' ? 'https://hidden-hamlet-88044.herokuapp.com/api/' : 'http://localhost:3000/api'
+
+  $axios.defaults.baseURL = `${window.location.origin}/api/`
 
   // request拦截器，我这里设置了一个token，当然你可以不要
   $axios.onRequest(config => {

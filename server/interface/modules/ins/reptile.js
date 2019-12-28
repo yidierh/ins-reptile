@@ -50,7 +50,7 @@ const reptile = (targetUrl) => {
       // 作者信息
       const owner = {
         is_verified: media['owner']['is_verified'],
-        profile_pic_url: media['owner']['profile_pic_url'],
+        profile_pic_url: await getBase64(media['owner']['profile_pic_url']),
         username: media['owner']['username']
       }
 

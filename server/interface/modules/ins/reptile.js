@@ -13,7 +13,7 @@ const headers = {
   'X-Requested-With': 'XMLHttpRequest'
 }
 
-const reptile = (targetUrl) => {
+const reptile = (targetUrl, isProxy) => {
   const options = {
     uri: targetUrl,
     method: "GET",
@@ -74,8 +74,10 @@ const reptile = (targetUrl) => {
           imgArr.push(media['display_url'])
         }
       }
-      const imgs = await transferImg(imgArr)
-      resolve ({ type: media['is_video'] ? 'video' : 'photo', owner: owner, video_url: videoUrl, imgs: imgs, text: text })
+      if (!isProxy) {
+        imgArr = await transferImg(imgArr)
+      }
+      resolve ({ type: media['is_video'] ? 'video' : 'photo', owner: owner, video_url: videoUrl, imgs: imgArr, text: text })
     })
   })
 }

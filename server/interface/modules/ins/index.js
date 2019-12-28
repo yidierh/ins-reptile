@@ -6,9 +6,9 @@
 import reptile from './reptile'
 const ins = {
   insPhoto: async ctx => {
-    let url = ctx.request.body.url
+    const { url, proxy } = ctx.request.body
     if (url) {
-      if (url.indexOf('https://www.instagram.com/') < 0) {
+      if (url.indexOf('www.instagram.com') < 0) {
         ctx.response.body = {
           err_code: 400,
           err_message: '请检查该链接是否为 instagram 链接！'
@@ -16,7 +16,7 @@ const ins = {
         return false
       }
       try {
-        const res = await reptile(url)
+        const res = await reptile(url, proxy)
         ctx.response.body = {
           data: res,
           err_code: 200
@@ -25,7 +25,7 @@ const ins = {
         if (err.code === 'ECONNRESET') {
           ctx.response.body = {
             err_code: 400,
-            err_message: '请检查代理端口号是否正确！'
+            err_message: '请确认代理端已经开启'
           }
         } else if (err.code === 'PRIVATE') {
           ctx.response.body = {

@@ -1,9 +1,13 @@
 <template>
   <section class="ins-container">
     <!-- 抓取部分 -->
-    <el-form ref="insForm" :model="form" :rules="rules" label-width="80px">
+    <el-form ref="insForm" :model="form" :rules="rules" label-width="150px">
       <el-form-item prop="url" required label="链接地址">
         <el-input v-model="form.url" placeholder="请输入要抓取的图片地址" clearable></el-input>
+      </el-form-item>
+      <el-form-item prop="proxy" label="本机是否开启代理">
+        <el-switch v-model="form.proxy"></el-switch>
+        <el-row class="ins-container-tips"><i class="el-icon-warning-outline"></i> 如果本机已开启代理请打开，可以加快抓取速度噢</el-row>
       </el-form-item>
       <el-form-item>
         <el-alert
@@ -67,7 +71,8 @@
     data() {
       return {
         form: {
-          url: ''
+          url: '',
+          proxy: false
         },
         rules: {
           url: [{validator: validUrl, trigger: 'blur'}]
@@ -82,7 +87,7 @@
           if (valid) {
             const loading = this.$loading({
               lock: true,
-              text: '抓取中...',
+              text: `${this.form.proxy ? '抓取中...' : '本机未开启代理，抓取时间可能较长，请耐心等待...'}`,
               spinner: 'el-icon-loading',
               background: 'rgba(0, 0, 0, 0.7)'
             })
@@ -122,6 +127,11 @@
 
 <style rel="stylesheet/less" lang="less">
   .ins-container {
+
+    &-tips {
+      color: rgb(184, 184, 184);
+    }
+
     &-content {
       display: inline-flex;
       width: 100%;

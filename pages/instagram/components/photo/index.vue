@@ -12,6 +12,9 @@
       type="warning"
       :closable="false">
     </el-alert>
+    <el-row v-show="isProxy" class="photo-container-tips"><i class="el-icon-warning-outline"></i> 如果图片无法显示，请关闭
+      “本机是否开启代理”
+    </el-row>
   </div>
 </template>
 
@@ -21,9 +24,13 @@
     props: {
       insData: {
         type: Object,
-        default () {
+        default() {
           return {}
         }
+      },
+      isProxy: {
+        type: Boolean,
+        required: true
       }
     }
   }
@@ -33,6 +40,12 @@
   .photo-container {
     padding: 0;
     width: 375px;
+
+    &-tips {
+      margin-bottom: 10px;
+      color: rgb(240, 68, 54);
+    }
+
     &-img {
       .el-image {
         border-radius: 5px;

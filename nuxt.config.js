@@ -33,7 +33,8 @@ module.exports = {
   plugins: [
     '@/plugins/element-ui',
     '@/plugins/axios',
-    {src: '@/plugins/permission.js', ssr: false}
+    {src: '@/plugins/permission.js', ssr: false},
+    {src: '@/plugins/video.js', ssr: false}
   ],
   /*
   ** Nuxt.js dev-modules

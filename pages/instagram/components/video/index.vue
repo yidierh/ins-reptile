@@ -1,19 +1,14 @@
 <template>
   <div @click.prevent class="video-container">
     <no-ssr>
-      <my-video :sources="video.sources" :options="video.options"></my-video>
+      <y-video :sources="video.sources" :options="video.options"></y-video>
     </no-ssr>
   </div>
 </template>
 
 <script>
-  let myVideo = {}
-  if (process.browser) {
-    myVideo = require('vue-video')
-  }
   export default {
     name: "Video",
-    components: {'my-video': myVideo},
     watch: {
       insData: {
         immediate: true,

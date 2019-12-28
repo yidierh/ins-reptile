@@ -4,11 +4,14 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: '轻松获取ins图片',
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
-      {hid: 'description', name: 'description', content: process.env.npm_package_description || ''}
+      {name: 'title', content: '轻松保存ins图片'},
+      {name: 'description', content: '众所周知，ins 中的图片质量非常高，很多图片都是美轮美奂，看了也是爱不释手，可惜，ins 官方并没有提供下载的方法，这可怎么办呢？百度上搜索如何保存ins图片，会发现非常多...'},
+      {name: 'og:title', content: '轻松保存ins图片'},
+      {name: 'og:description', content: '众所周知，ins 中的图片质量非常高，很多图片都是美轮美奂，看了也是爱不释手，可惜，ins 官方并没有提供下载的方法，这可怎么办呢？百度上搜索如何保存ins图片，会发现非常多...'}
     ],
     link: [
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}

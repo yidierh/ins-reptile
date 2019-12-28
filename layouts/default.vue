@@ -6,13 +6,15 @@
     <div class="main-container">
       <nuxt />
     </div>
+    <pay></pay>
   </div>
 </template>
 
 <script>
+  import pay from '@/components/pay'
   import Sidebar from './components/Sidebar'
   export default {
-    components: {Sidebar}
+    components: {pay, Sidebar}
   }
 </script>
 

@@ -28,7 +28,7 @@ const reptile = (targetUrl) => {
     timeout: 150000
   }
   return new Promise((resolve, reject) => {
-    api(options, function (err, res) {
+    api(options, async (err, res) => {
 
       if (err) {
         reject(err)
@@ -41,7 +41,7 @@ const reptile = (targetUrl) => {
       const shareData = JSON.parse(html.substring(start + 21, end - 1))
 
       if (shareData['entry_data'] && !shareData['entry_data']['PostPage']) { // 私密账户
-        reject({ code: 'PRIVATE' })
+        reject({ code: 'PRIVATE', err_message: err })
         return false
       }
 
@@ -50,7 +50,7 @@ const reptile = (targetUrl) => {
       // 作者信息
       const owner = {
         is_verified: media['owner']['is_verified'],
-        profile_pic_url: media['owner']['profile_pic_url'],
+        profile_pic_url: await getBase64(media['owner']['profile_pic_url']),
         username: media['owner']['username']
       }
 
@@ -74,8 +74,36 @@ const reptile = (targetUrl) => {
           imgArr.push(media['display_url'])
         }
       }
+      const imgs = await transferImg(imgArr)
+      resolve ({ type: media['is_video'] ? 'video' : 'photo', owner: owner, video_url: videoUrl, imgs: imgs, text: text })
+    })
+  })
+}
 
-      resolve ({ type: media['is_video'] ? 'video' : 'photo', owner: owner, video_url: videoUrl, imgs: imgArr, text: text })
+const transferImg = async urls => {
+  const transferImgs = []
+  for(const item of urls) {
+    transferImgs.push(await getBase64(item))
+  }
+  return transferImgs
+}
+
+const getBase64 = (url) => {
+  return new Promise((resolve, reject) => {
+    const options = {
+      uri: url,
+      method: "GET",
+      headers: {
+        'Host': 'scontent-nrt1-1.cdninstagram.com',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+        'Accept': 'image/webp,image/apng,image/*,*/*;q=0.8',
+        'Referer': 'scontent-nrt1-1.cdninstagram.com/v',
+      },
+      encoding: null, // 关闭编码
+      timeout: 150000
+    }
+    api(options, (err, res, body) => {
+      err ? reject(err) : resolve(`data:image/png;base64,${body.toString('base64')}`) // 图片转base64
     })
   })
 }

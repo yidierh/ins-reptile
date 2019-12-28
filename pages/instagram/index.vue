@@ -28,7 +28,7 @@
           <el-form-item>
             <div class="ins-container-content">
               <div class="ins-container-content-data">
-                <component :is="insData && insData.type === 'photo' ? 'photo' : 'rVideo'" :ins-data="insData"/>
+                <component :is="insData && insData.type === 'photo' ? 'photo' : 'rVideo'" :ins-data="insData" :is-proxy="form.proxy"/>
               </div>
               <div class="ins-container-content-owner">
                 <div class="ins-container-content-owner-avatar">

@@ -5,16 +5,16 @@
       <el-form-item prop="url" required label="链接地址">
         <el-input v-model="form.url" placeholder="请输入要抓取的图片地址" clearable></el-input>
       </el-form-item>
-      <el-form-item prop="proxy" label="本机是否开启代理">
-        <el-switch v-model="form.proxy"></el-switch>
-        <el-row class="ins-container-tips"><i class="el-icon-warning-outline"></i> 如果本机已开启代理请打开，可以加快抓取速度噢</el-row>
-      </el-form-item>
       <el-form-item>
         <el-alert
           title="使用方法：instagram 里面点分享复制链接，然后将链接粘贴到输入框中"
           type="warning"
           :closable="false">
         </el-alert>
+      </el-form-item>
+      <el-form-item prop="proxy" label="本机是否开启代理">
+        <el-switch v-model="form.proxy"></el-switch>
+        <el-row class="ins-container-tips"><i class="el-icon-warning-outline"></i> 如果本机已开启代理请打开，可以加快抓取速度噢</el-row>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="getPhoto">抓取</el-button>

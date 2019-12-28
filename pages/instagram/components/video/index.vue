@@ -1,8 +1,6 @@
 <template>
   <div @click.prevent class="video-container">
-    <no-ssr>
-      <y-video :sources="video.sources" :options="video.options"></y-video>
-    </no-ssr>
+    <y-video :sources="video.sources" :options="video.options"></y-video>
   </div>
 </template>
 
@@ -43,6 +41,6 @@
 <style rel="stylesheet/less" lang="less" scoped>
   .video-container {
     width: 375px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
   }
 </style>

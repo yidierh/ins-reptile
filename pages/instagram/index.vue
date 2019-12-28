@@ -89,7 +89,6 @@
             this.$axios.post('/get-ins-data', {...this.form})
               .then(res => {
                 this.insData = {...res.data}
-                console.log(this.insData.imgs[0])
                 loading.close()
               })
               .catch(() => {

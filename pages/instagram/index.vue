@@ -68,6 +68,11 @@
       ...insComputed,
       containerClass() {
         return `ins-container${this.isPhone ? '__phone' : ''}`
+      },
+      setClass() {
+        return function(className) {
+          console.log(className)
+        }
       }
     }
   }

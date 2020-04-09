@@ -7,7 +7,7 @@ module.exports = {
     title: '快速保存ins图片',
     meta: [
       {charset: 'utf-8'},
-      {name: 'viewport', content: 'width=device-width, initial-scale=1'},
+      {name: 'viewport', content: 'width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0'},
       {name: 'title', content: '快速保存ins图片'},
       {name: 'description', content: '众所周知，ins 中的图片质量非常高，很多图片都是美轮美奂，看了也是爱不释手，可惜，ins 官方并没有提供下载的方法，这可怎么办呢？百度上搜索如何保存ins图片，会发现非常多...'},
       {name: 'og:title', content: '快速保存ins图片'},

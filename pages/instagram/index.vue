@@ -70,8 +70,9 @@
         return `ins-container${this.isPhone ? '__phone' : ''}`
       },
       setClass() {
+        let that = this
         return function(className) {
-          console.log(className)
+          return that.isPhone ? `${className}__phone` : className
         }
       }
     }

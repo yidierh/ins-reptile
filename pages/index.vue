@@ -1,15 +1,16 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        INS-REPTILE
-      </h1>
-      <h2 class="subtitle">
-        Instagram 照片视频抓取工具
-      </h2>
+    <div class="container" v-if="!isPhone">
+      <div>
+        <logo />
+        <h1 class="title">
+          INS-REPTILE
+        </h1>
+        <h2 class="subtitle">
+          Instagram 照片视频抓取工具
+        </h2>
+      </div>
     </div>
-  </div>
+  <div v-else>phone</div>
 </template>
 
 <script>
@@ -18,6 +19,11 @@
   export default {
     components: {
       Logo
+    },
+    computed: {
+      isPhone() {
+        return false
+      }
     }
   }
 </script>

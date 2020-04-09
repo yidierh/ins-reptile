@@ -1,5 +1,5 @@
 <template>
-    <div class="container" v-if="!isPhone">
+    <div class="container">
       <div>
         <logo />
         <h1 class="title">
@@ -10,7 +10,6 @@
         </h2>
       </div>
     </div>
-  <div v-else>phone</div>
 </template>
 
 <script>
@@ -19,11 +18,6 @@
   export default {
     components: {
       Logo
-    },
-    computed: {
-      isPhone() {
-        return false
-      }
     }
   }
 </script>

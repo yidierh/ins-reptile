@@ -26,9 +26,9 @@
       <transition name="fade">
         <el-divider v-if="insData.type"><i class="el-icon-sunrise"></i> 抓取结果</el-divider>
       </transition>
-      <transition name="fade">
+      <transition-group name="fade">
         <template v-if="insData.type">
-          <el-form-item>
+          <el-form-item key="1">
             <div :class="setClass('ins-container-content')">
               <div :class="setClass('ins-container-content-data')">
                 <component :is="insData && insData.type === 'photo' ? 'photo' : 'rVideo'" :ins-data="insData" :is-proxy="form.proxy"/>
@@ -52,13 +52,13 @@
                   </el-alert>
                 </div>
               </div>
-              <div style="margin-top: 16px;">
-                <el-button type="success" @click="downland()">下载</el-button>
-              </div>
             </div>
           </el-form-item>
+          <el-form-item key="2">
+            <el-button type="success" @click="downlandCallBack()">下载</el-button>
+          </el-form-item>
         </template>
-      </transition>
+      </transition-group>
     </el-form>
   </section>
 </template>

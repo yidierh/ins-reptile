@@ -6,6 +6,7 @@
 import {validUrl} from '~/validate'
 import photo from '../components/photo'
 import rVideo from '../components/video'
+import * as downland from '@/utils/download'
 const ins = {
   components: {photo, rVideo},
   data() {
@@ -17,9 +18,7 @@ const ins = {
       rules: {
         url: [{validator: validUrl, trigger: 'blur'}]
       },
-      insData: {
-        // type: 'phone'
-      },
+      insData: {},
       btnLoading: false
     }
   },
@@ -44,7 +43,7 @@ const ins = {
         }
       })
     },
-    downland() {
+    downlandCallBack() {
       let type = this.insData.type
       if (type === 'photo') { // 图片下载
         // this.btnLoading = true
@@ -56,12 +55,7 @@ const ins = {
         //   this.btnLoading = true
         // })
       } else { // 视频下载
-        this.btnLoading = true
-        this.$message.warning('即将为您跳转至下载页，点击视频右下角下载即可')
-        setTimeout(() => {
-          this.btnLoading = false
-          window.open(`${this.insData.video_url}`, '_blank')
-        }, 2000)
+        downland(this.insData.video_url)
       }
     },
     removeParams() {

@@ -6,7 +6,6 @@
 import {validUrl} from '~/validate'
 import photo from '../components/photo'
 import rVideo from '../components/video'
-import * as download from '~/public/download'
 const ins = {
   components: {photo, rVideo},
   data() {
@@ -44,6 +43,8 @@ const ins = {
       })
     },
     downlandCallBack() {
+      import * as download from '~/public/download'
+      console.log(download)
       let type = this.insData.type
       if (type === 'photo') { // 图片下载
         // this.btnLoading = true

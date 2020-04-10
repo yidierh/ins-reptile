@@ -17,7 +17,9 @@ const ins = {
       rules: {
         url: [{validator: validUrl, trigger: 'blur'}]
       },
-      insData: {},
+      insData: {
+        // type: 1
+      },
       btnLoading: false
     }
   },

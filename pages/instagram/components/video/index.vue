@@ -1,10 +1,11 @@
 <template>
-  <div @click.prevent class="video-container">
+  <div @click.prevent :class="setClass('video-container')">
     <y-video :sources="video.sources" :options="video.options"></y-video>
   </div>
 </template>
 
 <script>
+  import { insComputed } from '@/mixins'
   export default {
     name: "Video",
     watch: {
@@ -25,6 +26,9 @@
         }
       }
     },
+    computed: {
+      ...insComputed
+    },
     data() {
       return {
         video: {
@@ -42,5 +46,9 @@
   .video-container {
     width: 375px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    &__phone {
+      width: 100%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    }
   }
 </style>

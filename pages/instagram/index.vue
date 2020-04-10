@@ -26,23 +26,23 @@
       <transition name="fade">
         <template v-if="insData.type">
           <el-form-item>
-            <div class="ins-container-content">
-              <div class="ins-container-content-data">
+            <div :class="setClass('ins-container-content')">
+              <div :class="setClass('ins-container-content-data')">
                 <component :is="insData && insData.type === 'photo' ? 'photo' : 'rVideo'" :ins-data="insData"
-                           :is-proxy="form.proxy"/>
+                           :is-proxy="form.proxy" :is-phone="isPhone"/>
               </div>
-              <div class="ins-container-content-owner">
-                <div class="ins-container-content-owner-avatar">
+              <div :class="setClass('ins-container-content-owner')">
+                <div :class="setClass('ins-container-content-owner-avatar')">
                   <el-avatar :src="insData && insData.owner ? insData.owner.profile_pic_url : ''"></el-avatar>
                 </div>
-                <div class="ins-container-content-owner-author">
+                <div :class="setClass('ins-container-content-owner-author')">
                   <el-alert
                     :title="`作者：${insData && insData.owner ? insData.owner.username: ''}`"
                     type="info"
                     :closable="false">
                   </el-alert>
                 </div>
-                <div class="ins-container-content-owner-text" v-if="insData && insData.text">
+                <div :class="setClass('ins-container-content-owner-text')" v-if="insData && insData.text">
                   <el-alert
                     :title="insData.text"
                     type="info"
@@ -68,12 +68,6 @@
       ...insComputed,
       containerClass() {
         return `ins-container${this.isPhone ? '__phone' : ''}`
-      },
-      setClass() {
-        let that = this
-        return function(className) {
-          return that.isPhone ? `${className}__phone` : className
-        }
       }
     }
   }
@@ -81,6 +75,20 @@
 
 <style rel="stylesheet/less" lang="less">
   .ins-container {
+
+    &__phone {
+      padding: 24px;
+
+      &-tips {
+        margin-top: 16px;
+      }
+
+      &-content {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+      }
+    }
 
     &-tips {
       color: rgb(184, 184, 184);
@@ -110,14 +118,6 @@
         &-text, &-btn {
           margin-top: 15px;
         }
-      }
-    }
-
-    &__phone {
-      padding: 24px;
-
-      &-tips {
-        margin-top: 16px;
       }
     }
   }

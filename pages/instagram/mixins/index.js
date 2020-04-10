@@ -6,7 +6,7 @@
 import {validUrl} from '~/validate'
 import photo from '../components/photo'
 import rVideo from '../components/video'
-import * as download from '@/utils/download.js'
+import * as download from '~/public/download'
 const ins = {
   components: {photo, rVideo},
   data() {

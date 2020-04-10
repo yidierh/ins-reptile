@@ -54,6 +54,9 @@
               </div>
             </div>
           </el-form-item>
+          <el-form-item>
+            <el-button type="success" @click="downland()">下载</el-button>
+          </el-form-item>
         </template>
       </transition>
     </el-form>

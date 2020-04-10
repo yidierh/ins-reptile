@@ -18,7 +18,7 @@ const ins = {
         url: [{validator: validUrl, trigger: 'blur'}]
       },
       insData: {
-        // type: 1
+        // type: 'phone'
       },
       btnLoading: false
     }
@@ -62,6 +62,12 @@ const ins = {
           window.open(`${this.insData.video_url}`, '_blank')
         }, 2000)
       }
+    },
+    removeParams() {
+      let _url = this.form.url
+      let _end = this.form.url.indexOf('?')
+      let _newUrl = _url.slice(0, _end)
+      this.form.url = _newUrl
     }
   }
 }

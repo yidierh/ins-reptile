@@ -3,7 +3,10 @@
     <!-- 抓取部分 -->
     <el-form ref="insForm" :model="form" :rules="rules" :label-width="isPhone ? '' : '150px'">
       <el-form-item prop="url" required label="链接地址">
-        <el-input v-model="form.url" placeholder="请输入要抓取的图片地址" clearable></el-input>
+        <el-input v-model="form.url" placeholder="请输入要抓取的 url" clearable></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="danger" @click="removeParams()">删除参数</el-button>
       </el-form-item>
       <el-form-item>
         <el-alert
@@ -28,8 +31,7 @@
           <el-form-item>
             <div :class="setClass('ins-container-content')">
               <div :class="setClass('ins-container-content-data')">
-                <component :is="insData && insData.type === 'photo' ? 'photo' : 'rVideo'" :ins-data="insData"
-                           :is-proxy="form.proxy" :is-phone="isPhone"/>
+                <component :is="insData && insData.type === 'photo' ? 'photo' : 'rVideo'" :ins-data="insData" :is-proxy="form.proxy"/>
               </div>
               <div :class="setClass('ins-container-content-owner')">
                 <div :class="setClass('ins-container-content-owner-avatar')">
@@ -87,6 +89,9 @@
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
+        &-owner {
+          margin-top: 16px;
+        }
       }
     }
 

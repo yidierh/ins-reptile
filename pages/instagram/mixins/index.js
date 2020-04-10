@@ -45,7 +45,7 @@ const ins = {
       })
     },
     downland() {
-      let type = this.from.type
+      let type = this.insData.type
       if (type === 'photo') { // 图片下载
         // this.btnLoading = true
         this.$message.warning('目前仅支持点击右键下载，后续会优化~')

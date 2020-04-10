@@ -52,10 +52,10 @@
                   </el-alert>
                 </div>
               </div>
+              <div style="margin-top: 16px;">
+                <el-button type="success" @click="downland()">下载</el-button>
+              </div>
             </div>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="success" @click="downland()">下载</el-button>
           </el-form-item>
         </template>
       </transition>

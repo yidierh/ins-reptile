@@ -6,7 +6,7 @@
 import {validUrl} from '~/validate'
 import photo from '../components/photo'
 import rVideo from '../components/video'
-import * as downland from '@/utils/download'
+import * as download from '@/utils/download.js'
 const ins = {
   components: {photo, rVideo},
   data() {
@@ -55,7 +55,7 @@ const ins = {
         //   this.btnLoading = true
         // })
       } else { // 视频下载
-        downland(this.insData.video_url)
+        download(this.insData.video_url)
       }
     },
     removeParams() {

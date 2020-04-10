@@ -8,6 +8,12 @@ import photo from '../components/photo'
 import rVideo from '../components/video'
 const ins = {
   components: {photo, rVideo},
+  head() {
+    return {
+      title: 'Instagram',
+      script: [{ src: '/js/download.js' }]
+    }
+  },
   data() {
     return {
       form: {
@@ -43,8 +49,6 @@ const ins = {
       })
     },
     downlandCallBack() {
-      import * as download from '~/public/download'
-      console.log(download)
       let type = this.insData.type
       if (type === 'photo') { // 图片下载
         // this.btnLoading = true

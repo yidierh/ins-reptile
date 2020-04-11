@@ -49,18 +49,13 @@ const ins = {
       })
     },
     downlandCallBack() {
-      let type = this.insData.type
+      const { imgs, videos_url, type } = this.insData
       if (type === 'photo') { // 图片下载
-        // this.btnLoading = true
-        this.$message.warning('目前仅支持点击右键下载，后续会优化~')
-        // this.$axios.post('/downland', { type: type, data: this.insData.imgs }).then(() => {
-        //   this.$message.success('下载成功，请到根目录下的 downlands 文件夹中查看')
-        //   this.btnLoading = false
-        // }).catch(()=> {
-        //   this.btnLoading = true
-        // })
+        imgs.forEach(item => {
+          download(item)
+        })
       } else { // 视频下载
-        download(this.insData.video_url)
+        download(videos_url)
       }
     },
     removeParams() {

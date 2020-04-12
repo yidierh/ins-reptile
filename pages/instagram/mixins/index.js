@@ -31,11 +31,11 @@ const ins = {
     getPhoto() {
       this.$refs['insForm'].validate(valid => {
         if (valid) {
+          this.form.url = this.removeParams()
           const loading = this.$loading({
             lock: true,
             text: `${this.form.proxy ? '抓取中...' : '本机未开启代理，抓取时间可能较长，请耐心等待...'}`,
             spinner: 'el-icon-loading',
-            background: 'rgba(0, 0, 0, 0.7)'
           })
           this.$axios.post('/get-ins-data', {...this.form})
             .then(res => {
@@ -62,7 +62,10 @@ const ins = {
       let _url = this.form.url
       let _end = this.form.url.indexOf('?')
       let _newUrl = _url.slice(0, _end)
-      this.form.url = _newUrl
+      return _newUrl
+    },
+    urlChangeHandler() {
+      this.insData = {}
     }
   }
 }

@@ -49,13 +49,13 @@ const ins = {
       })
     },
     downlandCallBack() {
-      const { imgs, videos_url, type } = this.insData
+      const { imgs, video_url, type } = this.insData
       if (type === 'photo') { // 图片下载
         imgs.forEach(item => {
           download(item)
         })
       } else { // 视频下载
-        download(videos_url)
+        download(video_url)
       }
     },
     removeParams() {

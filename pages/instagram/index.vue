@@ -60,7 +60,6 @@
         </template>
       </transition-group>
     </el-form>
-    <!--<el-button @click="downlandCallBack">test</el-button>-->
     <el-dialog
       :visible.sync="download.show"
       top="30vh"

@@ -96,6 +96,10 @@ const ins = {
           this.downloadFile(items, 'photo', imgs.length)
         }
       } else {
+        if (this.isPhone) {
+          this.$message.warning('手机暂不支持下载视频，请使用电脑打开下载')
+          return false
+        }
         this.downloadFile(video_url)
       }
     },

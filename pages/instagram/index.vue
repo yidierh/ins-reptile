@@ -60,6 +60,20 @@
         </template>
       </transition-group>
     </el-form>
+    <!--<el-button @click="downlandCallBack">test</el-button>-->
+    <el-dialog
+      :visible.sync="download.show"
+      top="30vh"
+      :modal-append-to-body="false"
+      :fullscreen="false"
+      :closeOnClickModal="false"
+      :closeOnPressEscape="false"
+      :showClose="false"
+      width="30%"
+      center>
+      <el-progress type="circle" :percentage="download.percent" :status="download.status"></el-progress>
+      <p style="margin-top: 16px">下载中，请稍后...</p>
+    </el-dialog>
   </section>
 </template>
 
@@ -127,6 +141,12 @@
           margin-top: 15px;
         }
       }
+    }
+    .el-dialog__body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
   }
 </style>

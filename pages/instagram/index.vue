@@ -5,9 +5,6 @@
       <el-form-item prop="url" required label="链接地址">
         <el-input @change="urlChangeHandler()" v-model="form.url" placeholder="请输入要抓取的 url" clearable></el-input>
       </el-form-item>
-      <!--<el-form-item>
-        <el-button type="danger" @click="removeParams()">删除参数</el-button>
-      </el-form-item>-->
       <el-form-item>
         <el-alert
           title="使用方法：instagram 里面点分享复制链接，然后将链接粘贴到输入框中"
